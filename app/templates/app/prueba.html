@@ -1,0 +1,605 @@
+{% load static %}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travelium - Trip Asia Landing Page</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Google Tag Manager -->
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-TGBGFBB"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TGBGFBB');</script>
+<!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CKZR72"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+	<!--HEADER-->
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="logo">
+					<h1>Travelium</h1>
+				</div>
+
+				<div class="mobilemenu">
+					<a href="#">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+					</a>
+				</div>
+				
+				<!--Navigation menu-->
+				<div class="nav">
+					
+					<ul>
+						<li><a href="#home">HOME</a></li>
+						<li><a href="#destination">DESTINATIONS</a></li>
+						<li><a href="#special">SPECIAL OFFER</a></li>
+						<li><a href="#tour">TOURS</a></li>
+						<li><a href="#packages">PACKAGES</a></li>
+						<li><a href="#testimonial">TESTIMONIALS</a></li>
+					</ul>
+					
+				</div>
+				<!--END Nav-->
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--BANNER-->
+	<div class="wrapbg"></div>
+
+	<div class="banner" id="home"></div>
+	
+	<!--FORM HEADER-->
+	<div class="closenow"><i class="far fa-times-circle"></i></div>
+
+	<div class="tbl">
+			<div class="cell">
+				<div class="wrapin">
+
+				<h2>Book Now Your Holiday Tours! Start $99.</h2>
+				<div class="wrapform">
+					<p class="notif"></p>
+					<form id="form1">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Name:</label>
+							<label class="ico"><i class="fas fa-user"></i></label>
+							<input type="text" name="name" id="fname" required="">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Email:</label>
+							<label class="ico"><i class="far fa-envelope"></i></label>
+							<input type="email" name="email" id="femail">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Phone:</label>
+							<label class="ico"><i class="fas fa-phone"></i></label>
+							<input type="text" name="phone">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Destination:</label>
+							<label class="ico"><i class="fas fa-map-marker-alt"></i></label>
+							<select name="destination" id="destinationform">
+								<option value="Sanur">Sanur</option>
+								<option value="Seminyak">Seminyak</option>
+								<option value="Kuta">Kuta</option>
+								<option value="Nusa Dua">Nusa Dua</option>
+								<option value="Legian">Legian</option>
+								<option value="Canggu">Canggu</option>
+								<option value="Petitenget">Petitenget</option>
+							</select>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Start date:</label>
+							<label class="ico"><i class="far fa-calendar-alt"></i></label>
+							<input type="text" name="startdate" class="datepicker hasDatepicker" id="startdate" required="">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>End date:</label>
+							<label class="ico"><i class="far fa-calendar-alt"></i></label>
+							<input type="text" name="enddate" class="datepicker hasDatepicker" id="enddate" required="">
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Adult:</label>
+							<label class="ico"><i class="fas fa-user"></i></label>
+							<input type="text" name="adult" id="adult" required="">
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 default">
+							<label>Children:</label>
+							<label class="ico"><i class="fas fa-child"></i></label>
+							<input type="text" name="children" id="children" required="">
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input type="submit" name="submit" id="btncontactsend" value="Book Tours">
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+
+				</div>
+			</div>
+	</div>
+	
+	<!--DESTINATION-->
+	<div class="destination" id="destination">
+		<div class="container">
+			<div class="row">
+				<div class="wraptitle">
+				<h2>DESTINATIONS</h2>
+				<p>Our choosen destination will make your holiday more exited and more unforgetable moment.</p>
+				</div>
+
+				<div class="grid" style="position: relative; height: 740px;">
+				  <div class="grid-sizer"></div>
+				  <div class="gutter-sizer"></div>
+
+				  <div class="grid-item grid-m-width" style="background: url(&quot;images/20.jpg&quot;) center center / cover no-repeat; position: absolute; left: 0%; top: 0px;">
+				  	<div class="wraptext">
+						<h3>Indonesia</h3>
+						<p>Bali</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+
+				  <div class="grid-item" style="background: url(&quot;images/13.jpg&quot;) center center / cover no-repeat; position: absolute; left: 51.9658%; top: 0px;">
+				  	<div class="wraptext">
+						<h3>Thailand</h3>
+						<p>Phuket</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+
+				  <div class="grid-item" style="background: url(&quot;images/14.jpg&quot;) center center / cover no-repeat; position: absolute; left: 77.9487%; top: 0px;">
+				  	<div class="wraptext">
+						<h3>Vietnam</h3>
+						<p>Hoi An</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+
+				  <div class="grid-item" style="background: url(&quot;images/19.jpg&quot;) center center / cover no-repeat; position: absolute; left: 0%; top: 370px;">
+				  	<div class="wraptext">
+						<h3>Singapore</h3>
+						<p>Changi</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+
+				  <div class="grid-item" style="background: url(&quot;images/21.jpg&quot;) center center / cover no-repeat; position: absolute; left: 25.9829%; top: 370px;">
+				  	<div class="wraptext">
+						<h3>Malaysia</h3>
+						<p>Kuching</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+
+				  <div class="grid-item grid-m-width" style="background: url(&quot;images/18.jpg&quot;) center center / cover no-repeat; position: absolute; left: 51.9658%; top: 370px;">
+				  	<div class="wraptext">
+						<h3>Philippines</h3>
+						<p>Manila</p>
+				  	</div>
+				  	<div class="link">
+						<a href="#">More</a>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--SPECIAL-->
+	<div class="special" id="special">
+
+			<div class="col-lg-6 bgtext">
+					<h1>GET 25% OFF</h1>
+					<h2>Nusa Penida Cruise</h2>
+					<div class="line"></div>
+					<p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum v lorem ipsum</p>
+					<label>4 Days 3 Nights at Nusapoh Hotels ONLY <strong>$77 USD</strong></label>
+					<div class="atag">
+						<a href="#" class="btnbooknow">Book now</a>
+				    </div>
+			</div>
+		
+		<div class="clearfix"></div>
+	</div>
+	
+	<!--POPOLAR-->
+	<div class="popular" id="tour">
+
+		<div class="wraptitle">
+			<h2>POPULAR TOURS</h2>
+			<p>Our unfogetable on below tours package. Our most popular base on our review and most people to book.</p>
+		</div>
+
+		<!-- Swiper -->
+		<div class="swiper-container swiper-container-pgoffer swiper-container-horizontal swiper-container-free-mode">
+		    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+		      	<div class="swiper-slide swiper-slide-active" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/19.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Ubud</h3>
+								<h4>Indonesia</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+
+		    	<div class="swiper-slide swiper-slide-next" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/20.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Phuket</h3>
+								<h4>Thailand</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+
+		      	<div class="swiper-slide" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/21.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Chiang Mai</h3>
+								<h4>Thailand</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+
+		      	<div class="swiper-slide" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/18.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Bavaria</h3>
+								<h4>Germany</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+
+		      	<div class="swiper-slide" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/14.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Seminyak</h3>
+								<h4>Indonesia</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+
+		      	<div class="swiper-slide" style="width: 245.8px; margin-right: 30px;">
+		      		<div class="imgcover" style="background:url(images/13.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;"></div>
+
+		      		<div class="wraptext">
+		      			<div class="dtbl">
+		      				<div class="cell">
+								<h3>Raja Ampat</h3>
+								<h4>Indonesia</h4>
+
+								<div class="atag">
+									<a href="#" class="btnbooknow">Book now</a>
+								</div>
+
+								<div class="price">
+									<h3><i class="fas fa-tag"></i> $119 / 3 Nights</h3>
+									<div class="star">
+										<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									</div>
+					      		</div>
+
+							</div>
+						</div>
+		      		</div>
+		      	</div>
+		    </div>
+		    
+		<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+		<!-- Add Pagination -->
+		<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span></div>
+
+	</div>
+	
+	<!--TESTIMONIAL-->
+	<div class="testimoni" id="testimonial">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 rowtesti">
+					<div class="dtbl">
+						<div class="cell">
+							<i class="fas fa-quote-left"></i>
+							<h2>So Enjoy My Holiday in Bali</h2>
+							<p>A month ago, I get in call by this travel. They offer me an amazing offer to Bali. So I take it then I go with my family. In Bali I go to the Amazing and Unique place. Thanks Traveli.</p>
+
+							<img src="images/testi.jpg" class="img-responsive traveler" alt="Testi traveler">
+							<h4>Anna Laise</h4>
+							<label>Traveler, Spain</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 rowtesti">
+					<div class="dtbl">
+						<div class="cell">
+							<i class="fas fa-quote-left"></i>
+							<h2>Perfect Vacation with My Girlfriend</h2>
+							<p>I got an info from my friend about traveli then I try got the offer from it then they gave a feedback soon. After that I got an Amazing Vacation to Phuket Thailand. I very enjoy my holiday. Thanks. </p>
+
+							<img src="images/testi.jpg" class="img-responsive traveler" alt="Testi traveler">
+							<h4>Maria Ocoa</h4>
+							<label>Traveler, England</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--PACKAGES-->
+	<div class="additionalpckg" id="packages">
+		<div class="container">
+			<div class="row">
+				<div class="wraptitle">
+					<h2>SPECIAL PACKAGES</h2>
+					<p>Our unfogetable on below packages. Our most popular base on our review and most people to book.</p>
+				</div>
+
+				<!-- Swiper -->
+				  <div class="swiper-container swiper-container-pgspecial swiper-container-horizontal">
+				    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1962px, 0px, 0px);">
+				      <div class="swiper-slide" style="margin-right: 30px;">
+				      	<div class="imgcover" style="background:url(images/20.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;">
+				      		<div class="wraptext">
+								<h3>$139 USD for 3 Nights</h3>
+								<label>Ubud, Indonesia</label>
+				      		</div>
+				      		<div class="atag">
+								<a href="#" class="btnbooknow">Book now</a>
+				      		</div>
+				      	</div>
+				      </div>
+
+				      <div class="swiper-slide" style="margin-right: 30px;">
+				      	<div class="imgcover" style="background:url(images/21.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;">
+				      		<div class="wraptext">
+								<h3>$109 USD for 3 Nights</h3>
+								<label>Phuket, Thailand</label>
+				      		</div>
+				      		<div class="atag">
+								<a href="#" class="btnbooknow">Book now</a>
+				      		</div>
+				      	</div>
+				      </div>
+
+				      <div class="swiper-slide swiper-slide-prev" style="margin-right: 30px;">
+				      	<div class="imgcover" style="background:url(images/18.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;">
+				      		<div class="wraptext">
+								<h3>$144 USD for 3 Nights</h3>
+								<label>Seminyak, Indonesia</label>
+				      		</div>
+				      		<div class="atag">
+								<a href="#" class="btnbooknow">Book now</a>
+				      		</div>
+				      	</div>
+				      </div>
+
+				      <div class="swiper-slide swiper-slide-active" style="margin-right: 30px;">
+				      	<div class="imgcover" style="background:url(images/17.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;">
+				      		<div class="wraptext">
+								<h3>$111 USD for 3 Nights</h3>
+								<label>Chiang Mai, Thailand</label>
+				      		</div>
+				      		<div class="atag">
+								<a href="#" class="btnbooknow">Book now</a>
+				      		</div>
+				      	</div>
+				      </div>
+
+				      <div class="swiper-slide swiper-slide-next" style="margin-right: 30px;">
+				      	<div class="imgcover" style="background:url(images/15.jpg) no-repeat center center;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;">
+				      		<div class="wraptext">
+								<h3>$211 USD for 3 Nights</h3>
+								<label>Athens, Greece</label>
+				      		</div>
+				      		<div class="atag">
+								<a href="#" class="btnbooknow">Book now</a>
+				      		</div>
+				      	</div>
+				      </div>
+				      
+				    </div>
+				    <!-- Add Arrows -->
+				    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
+				    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="false"></div>
+				  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<div class="row">
+				<div class="subscribe">
+					<h3>Subscribe to our newsletter</h3>
+					<form>
+						<input type="email" name="email" placeholder="Your email address" required="" autocomplete="off">
+						<input type="submit" name="submit" value="Subscribe">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--FOOTER-->
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-12 col-sm-6">
+				<h1>Traveli</h1>
+				<p>Your Journey Start here</p>
+
+				<ul class="sosmed">
+					<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+					<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+					<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+					<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>	
+				</ul>
+
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<h2>Travel Journey</h2>
+					<ul class="thumb">
+						<li>
+							<img src="images/20.jpg" class="img-responsive" alt="travel journey">
+							<h4>Bali</h4>
+							<h5>$187 USD</h5>
+							<a href="#" class="btnbooknow">Book now</a>
+						</li>
+						<li>
+							<img src="images/21.jpg" class="img-responsive" alt="travel journey">
+							<h4>Phuket</h4>
+							<h5>$119 USD</h5>
+							<a href="#" class="btnbooknow">Book now</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<h2>Our Popular</h2>
+					<ul>
+						<li><a href="#">Ubud, Bali</a></li>
+						<li><a href="#">Seminyak, Bali</a></li>
+						<li><a href="#">Phuket, Thailand</a></li>
+						<li><a href="#">Chiang Mai, Thailand</a></li>
+						<li><a href="#">Bavaria, German</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<h2>Our Partner</h2>
+					<ul>
+						<li><a href="#">Dribbble</a></li>
+						<li><a href="#">Design Bundles</a></li>
+						<li><a href="#">Thememove</a></li>
+						<li><a href="#">Gus Eka Creations</a></li>
+						<li><a href="#">Mailchimp</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+</body>
+</html>
