@@ -1,0 +1,45 @@
+{% extends 'app/base_cliente.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h2>Mis consultas</h2>
+
+
+<div class="container">
+    <div class="row" width="500px">
+      Complejos
+      {%for complejo in lista_complejos%}
+        {{complejo.nombre_complejo}}
+    {%endfor%}
+    </div>
+    <div class="row" width="500px">
+      Mensajes
+      {%for consulta in lista_consultas%}
+        {{consulta.id}}
+    {%endfor%}
+    </div>
+  </div>
+
+
+
+
+<div class="contenedor">
+    
+    <div>
+        {% include 'app/paginator.html' %}
+    </div>
+</div>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                'title':'{{m}}',
+                'text':'Muchas gracias',
+                'icon':'success'
+            })
+        </script>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -4,15 +4,8 @@ from django.contrib.auth.models import AbstractUser, User
 from django.contrib.auth.base_user import BaseUserManager
 from django.db.models.deletion import CASCADE
 from django.db.models.fields.related import ForeignKey
-from django.utils.translation import ugettext_lazy as _
+#from django.utils.translation import ugettext_lazy as _
 # Create your models here.
-
-#class MyUser(AbstractUser):
- #   email = models.EmailField(max_length=60, verbose_name='email', unique=True)
-
-  #  EMAIL_FIELD = 'email'
-
-    
 
 localidades = [
     [0, 'Atlántida'],
@@ -24,6 +17,16 @@ localidades = [
     [6, 'Salto']
 ]
 
+
+
+class Equipamiento(models.Model):
+    nombre = models.CharField(max_length=100, verbose_name='Equipamiento')
+    visible = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.nombre
+
+
 class Complejo(models.Model):
     user = models.OneToOneField(User, related_name='complejo', on_delete=models.CASCADE, null=True)
     nombre_complejo = models.CharField(max_length=50)
@@ -32,6 +35,7 @@ class Complejo(models.Model):
     telefono = models.IntegerField()
     activo = models.BooleanField(default=True)
     descripcion = models.TextField(max_length=1000)
+    equipamiento = models.ManyToManyField(Equipamiento)
     imagen1 = models.ImageField(upload_to='complejos', null=True)
     imagen2 = models.ImageField(upload_to='complejos', null=True)
     imagen3 = models.ImageField(upload_to='complejos', null=True)
@@ -41,6 +45,10 @@ class Complejo(models.Model):
 
     def __str__(self):
         return self.nombre_complejo
+
+    def ver_localidad(self):
+        return self.localidad.display()
+    
 
 paises = [
     [0, 'Alemania'],
@@ -61,35 +69,6 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.user.username
-    
-
-class Consulta(models.Model):
-    cliente = models.ForeignKey(Cliente, related_name='cliente', on_delete=models.PROTECT, null=True)
-    complejo = models.ForeignKey(Complejo, related_name='complejo', on_delete=models.PROTECT, null=True)
-    fecha_ingreso = models.DateField()
-    fecha_salida = models.DateField()
-    cantidad_mayores = models.IntegerField()
-    cantidad_menores = models.IntegerField()
-    leida = models.BooleanField()
-
-    def __int__(self):
-        return self.pk
-
-
-creadores = [
-    [0, 'Cliente'],
-    [1, 'Complejo']
-]
-
-
-class Mensaje(models.Model):
-    consulta = models.ForeignKey(Consulta, related_name='consulta', on_delete=models.CASCADE, null=True)
-    fecha = models.DateTimeField(auto_now_add=True, blank=True)
-    mensaje = models.TextField(max_length=1000)
-    creador = models.IntegerField(choices=creadores)
-
-    def __str__(self):
-        return self.pk
 
 
 class Servicio(models.Model):
@@ -110,23 +89,7 @@ class Servicio(models.Model):
 
     def __str__(self):
         return self.complejo.nombre_complejo
-
-class Equipamiento(models.Model):
-    complejo = models.ForeignKey(Complejo, related_name='equipamiento', on_delete=CASCADE)
-    heladera = models.BooleanField(default=False)
-    frigobar = models.BooleanField(default=False)
-    banio_suite = models.BooleanField(default=False)
-    mosquitero = models.BooleanField(default=False)
-    frazadas = models.BooleanField(default=False)
-    acolchado = models.BooleanField(default=False)
-    bidet = models.BooleanField(default=False)
-    ventiladores = models.BooleanField(default=False)
-    aire_acondicionado = models.BooleanField(default=False)
-    cofre = models.BooleanField(default=False)
-    secador_pelo = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.complejo.nombre_complejo
+    
 
 class Exterior(models.Model):
     complejo = models.ForeignKey(Complejo, related_name='exterior', on_delete=CASCADE)

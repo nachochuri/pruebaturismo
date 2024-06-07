@@ -30,7 +30,7 @@
                 <ul>
                     {% if perms.app.view_consulta %}
                     <li>
-                        <a href="{% url 'listar_consultas' %}">Ver consultas</a>
+                        <a href="{% url 'consultas:listar_consultas' request.user.id %}">Ver consultas</a>
                     </li>
                     {% endif %}
                     {% if user.is_authenticated %}

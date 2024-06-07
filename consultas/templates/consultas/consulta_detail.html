@@ -1,0 +1,33 @@
+{% extends 'app/base_cliente.html' %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+    <br><br>
+    <div class="row">
+        
+        <div class="col-12 col-md-6 offset-md-3">
+
+            <div class="card">
+                <div class="card-body">
+                    <h2>Mis consultas</h2>
+                    <hr>
+                    Complejo: {{ consulta.complejo }}
+                    <br>
+                    Mensaje: {{ consulta.mensaje }}
+                    <br>
+                    Fecha Ingreso: {{ consulta.fecha_ingreso | date }}
+                    <br>
+                    Fecha Salida: {{ consulta.fecha_salida | date }}
+                    <br>
+                    Cantidad de Mayores: {{ consulta.cantidad_mayores }}
+                    <br>
+                    Cantidad de Menores: {{ consulta.cantidad_menores }}
+                    <br>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'app/base_cliente.html' %}
+{% load crispy_forms_tags %}
+<script type="text/javascript">
+        // jQuery is loaded => print the version
+
+        $( function() {
+          $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+        });
+
+
+
+    </script>
+
+{% block contenido %}
+
+<div class="modal-dialog modal-dialog-centered"></div>
+
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <tr>
+                    {%if messages%}
+                        {%for message in messages%}
+                            <strong style="color:green;">{{ message }}</strong>
+                        {%endfor%}
+                    {%endif%}
+                    </tr>
+                <div class="card-body" class="col-12 col-md-6 offset-md-3">
+                    <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Complejo</h4>
+
+                    <button type="button" class="btn-close" onclick="cerrar_login_modal()" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h2>{{ complejo.nombre_complejo }}</h2>
+                                <p>{{ complejo.get_localidad_display }}</p>
+                                <p>{{ complejo.direccion }}</p>
+                                <img src=" {{ complejo.imagen1.url }} " width="100%">
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                    <h4>Cliente</h4>
+                    <hr>
+                        <div class="card">
+                            <div class="card-body">
+
+                                {{ user.username }}
+
+                            </div>
+                        </div>
+
+                </div>
+
+                <h4>Realice su consulta</h4>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-body">
+                            <table>
+                                {{form.as_p}}
+                            </table>
+                        </div>
+                        <input type="submit" value="Enviar" class="btn btn-primary">
+                        <input type="reset" value="Cancelar" class="btn btn-secondary">
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,181 +1,34 @@
+from django.contrib import auth
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Complejo, Cliente, Consulta, Equipamiento, Exterior, Mensaje, Servicio
-from .forms import ConsultaForm, MensajeForm, ExtendsUserCreationForm, ClienteForm
-from django.http import Http404, HttpResponseRedirect
+from .models import Complejo, localidades
+from .forms import ExtendsUserCreationForm, ClienteForm
 from django.contrib import messages
-from django.core.mail import send_mass_mail
-from django.core.paginator import Paginator
+#from django.core.mail import send_mass_mail
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import permission_required, login_required
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import Permission, User, AnonymousUser
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import JsonResponse
+from django.views.generic import ListView, DetailView, UpdateView
+from django import forms
 
 #from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-def home(request):
-    next = request.POST.get('next')
+class ComplejosListView(ListView):
+    model = Complejo
 
-    if request.user.is_authenticated:
-        user = User.objects.get(pk=request.user.id)
 
-        if(hasattr(user, 'complejo')):
-            return redirect(to='listar_consultas')
-            
+class LoginComplejoView(DetailView):
+    model = Complejo
+    template_name = 'app/login.html'
 
-    complejos = Complejo.objects.all()
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(complejos, 8)
-        complejos = paginator.page(page)
-    except:
-        raise Http404
-
-    data = {
-        'entity':complejos,
-        'paginator':paginator
-    }
-
-    return render(request, 'app/home.html', data)
-
-#@login_required(redirect_field_name = 'next')
-@permission_required('app.add_consulta')
-def realizar_consulta(request, nombre):
+class ComplejoUpdate(UpdateView):
+    model = Complejo
     
-    complejo = get_object_or_404(Complejo, nombre_complejo=nombre)
-    cliente = get_object_or_404(Cliente, user_id=request.user.id)
-    
-    
-    data = {
-        'consulta' : ConsultaForm(),
-        'complejo' : complejo,
-        'cliente': cliente,
-        'mensaje': MensajeForm()
-    }
-
-    if request.method == 'POST':
-        
-        consulta = ConsultaForm(request.POST)
-        mensaje = MensajeForm(request.POST)
-        
-        if consulta.is_valid():
-            instanceC = consulta.save(commit=False)
-            instanceC.cliente = cliente
-            instanceC.complejo = complejo
-            instanceC.leida = False
-            instanceC.save()
-            instanceM = mensaje.save(commit=False)
-            
-            instanceM.consulta = instanceC
-            instanceM.creador = 0
-            instanceM.save()
-            #mensaje_complejo = ('Consulta desde TurismoReserva', instance.mensaje, 'TurismoReserva', ['restonacho@gmail.com'])
-            #mensaje_central = ('Nueva consulta', 'Here is another message', 'TurismoReserva', ['ignacio@estudioweb.net'])
-            #send_mass_mail((mensaje_complejo, mensaje_central), fail_silently=False)
-            messages.success(request,'Consulta enviada!')
-            return redirect(to='home')
-        else:
-            #data['complejo'] = complejo
-            data['consulta'] = consulta
-            data['mensaje'] = mensaje
-
-    return render(request, 'app/realizar_consulta.html', data)
-
-@permission_required('app.view_consulta')
-def listar_consultas(request):
-    usuario = request.user
-    complejo = get_object_or_404(Complejo, user_id=usuario.id)
-    
-    consultas = Consulta.objects.filter(complejo = complejo)
-    mensajes = Mensaje.objects.order_by('-id')[0]
-    ultimo_msj = mensajes
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(consultas, 8)
-        consultas = paginator.page(page)
-    except:
-        raise Http404
-
-    data = {
-        'entity' : consultas,
-        'ultimo_msj':ultimo_msj,
-        'paginator' : paginator
-    }
-
-    return render(request, 'app/listar_consultas.html', data)
-
-@permission_required('app.view_consulta')
-def ver_consulta(request, id):
-
-    consulta = get_object_or_404(Consulta, id=id)
-    mensajes = Mensaje.objects.filter(consulta_id=id)
-    consulta.leida = True
-    consulta.save()
-    
-    data = {
-        'consulta':consulta,
-        'mensajes':mensajes,
-        'form':ConsultaForm(),
-        'msjform':MensajeForm()
-    }
-
-    if request.method == 'POST':
-        #formulario = ConsultaForm(data=request.POST, instance=consulta)
-        mensaje = MensajeForm(request.POST)
-
-        if mensaje.is_valid():
-            consulta.leida = False
-            consulta.save()
-            instanceM = Mensaje()
-            instanceM = mensaje.save(commit=False)
-            instanceM.consulta = consulta
-            instanceM.creador = 1
-            instanceM.save()
-
-            messages.success(request,'Respuesta enviada!')
-            return redirect(to='listar_consultas')
-        
-
-    return render(request, 'app/ver_consulta.html', data)
 
 
-@permission_required('app.view_consulta')
-def ver_mi_consulta(request, id):
-
-    consulta = get_object_or_404(Consulta, id=id)
-    mensajes = Mensaje.objects.filter(consulta_id=id)
-    consulta.leida = True
-    consulta.save()
-
-    data = {
-        'consulta':consulta,
-        'mensajes':mensajes,
-        'form':ConsultaForm(),
-        'msjform':MensajeForm()
-    }
-
-    if request.method == 'POST':
-        #formulario = ConsultaForm(data=request.POST, instance=consulta)
-        mensaje = MensajeForm(request.POST)
-
-        if mensaje.is_valid():
-            consulta.leida = False
-            consulta.save()
-            instanceM = Mensaje()
-            instanceM = mensaje.save(commit=False)
-            instanceM.consulta = consulta
-            instanceM.creador = 0
-            instanceM.save()
-
-            messages.success(request,'Mensaje enviado!')
-    return render(request, 'app/ver_mi_consulta.html', data)
-
-def prueba(request):
-    return render(request, 'app/prueba.html')
-
+"""
 def registro(request):
     
     if request.method == 'POST':
@@ -200,7 +53,7 @@ def registro(request):
             user.user_permissions.add(37)
             
             messages.success(request,'Te has registrado!')
-            return redirect(to='home')
+            return redirect(to='complejos')
     else:
         form = ExtendsUserCreationForm()
         cliente_form = ClienteForm()
@@ -208,60 +61,99 @@ def registro(request):
     data = {'form':form, 'cliente_form':cliente_form}
 
     return render(request, 'registration/registro.html', data)
-
-
-def mis_consultas(request):
-    cliente = get_object_or_404(Cliente, user_id = request.user.id)
-    #consultas = Consulta.objects.filter(Consulta, pk = cliente.id).orderby(id)
-    consultas = Consulta.objects.all()
-    consultas_form = []
-    
-    for c in consultas:
-        if c.cliente_id == cliente.id:
-            consultas_form.append(c)
-
-    data = {
-        'consultas':consultas_form
-    }
-
-    return render(request,'app/mis_consultas.html', data)
-
+"""
 def ver_cliente(request):
     data = {
         'form':ClienteForm()
     }
     return render(request,'app/ver_cliente.html',data)
 
-def buscar_equipamientos(objeto):
-    lista_equipamiento = []
-    lista_equipamiento.append(objeto.heladera)
-    lista_equipamiento.append(objeto.frigobar)
-    lista_equipamiento.append(objeto.banio_suite)
-    lista_equipamiento.append(objeto.mosquitero)
-    lista_equipamiento.append(objeto.frazadas)
-    lista_equipamiento.append(objeto.acolchado)
-    lista_equipamiento.append(objeto.bidet)
-    lista_equipamiento.append(objeto.ventiladores)
-    lista_equipamiento.append(objeto.aire_acondicionado)
-    lista_equipamiento.append(objeto.cofre)
-    lista_equipamiento.append(objeto.secador_pelo)
 
-    return lista_equipamiento
 
-@login_required(redirect_field_name = 'next')
-def ver_complejo(request, nombre):
+"""
+MOSTRAR INFO DE UN COMPLEJO SELECCIONADO
+"""
 
-    complejo = get_object_or_404(Complejo, nombre_complejo=nombre)
-    #cliente = get_object_or_404(Cliente, user_id=request.user.id)
-    equipamiento = get_object_or_404(Equipamiento, complejo_id = complejo.id)
-    #exterior = get_object_or_404(Exterior, complejo_id = complejo.id)
-    #servicio = get_object_or_404(Servicio, complejo_id = complejo.id)
-    lista_equipamiento = buscar_equipamientos(equipamiento)
+class ComplejoDetailView(DetailView):
+    model = Complejo
 
-    data = {
-        'complejo' : complejo,
-        'equipamiento': equipamiento,
-        'lista_equipamientos': lista_equipamiento
-    }
 
-    return render(request, 'app/ver_complejo.html', data)
+def login_complejo(request):
+    
+    if request.method == 'POST':
+        
+        
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if not Complejo.objects.filter(user_id = user.id).exists():
+                raise forms.ValidationError('ERROR!!!')
+            else:
+                login(request, user)
+                complejo = Complejo.objects.get(user_id = user.id)
+                return redirect('complejo-admin/'+complejo.nombre_complejo)
+        else:
+            return redirect('login')
+        
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'app/login.html', {'form':form})
+"""
+def login_consulta(request,id):
+    proxima = '../ver-complejo/'+str(id)
+    if request.method == 'POST':
+        id = str(request.GET.get('id'))
+        form = AuthenticationForm(data=request.POST)
+        
+        if form.is_valid():
+            
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect(to=proxima)
+        else:
+            messages.success(request,'Usuario o contraseña invalidos...')
+            
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'registration/login_consulta.html/', {'form':form})
+
+def logout_usuario(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect(to='http://localhost:8000/')
+
+def nuevo_login(request):
+    return render(request,'ver_complejo.html',{'form':AuthenticationForm})
+
+    """
+
+
+
+
+
+def autocomplete(request):
+    datos = request.GET.get('term')
+    #complejos = Complejo.objects.filter(nombre_complejo__icontains=datos)
+    #lista_complejos = []
+    #lista_complejos += [x.nombre_complejo for x in complejos]
+    lista_localidades = []
+    for key,value in localidades:
+        if value.lower().__contains__(datos):
+            lista_localidades.append(value)
+    return JsonResponse(lista_localidades,safe=False)
+
+def ver_complejos_por_localidad(request, lugar):
+    loc = ''
+    for key,value in localidades:
+        if lugar == value:
+            loc = key
+
+    complejos = Complejo.objects.filter(localidad=loc)
+    return render(request,'app/ver_complejos_por_localidad.html',{'complejos':complejos, 'localidad':lugar})
+   

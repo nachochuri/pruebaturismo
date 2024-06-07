@@ -1,15 +1,18 @@
+from django.contrib.auth import login
 from django.urls import path, include
-from .views import home, realizar_consulta, listar_consultas, ver_consulta, registro, mis_consultas, ver_cliente, ver_mi_consulta, ver_complejo
+from .views import (ver_cliente, autocomplete,ver_complejos_por_localidad)
+from .views import ComplejosListView, ComplejoDetailView, LoginComplejoView, login_complejo, ComplejoUpdate
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('home/', home, name = 'home'),
-    path('realizar-consulta/<nombre>', realizar_consulta, name='realizar_consulta'),
-    path('listar-consultas/', listar_consultas, name = 'listar_consultas'),
-    path('ver-consulta/<id>', ver_consulta, name = 'ver_consulta'),
-    path('ver-mi-consulta/<id>', ver_mi_consulta, name = 'ver_mi_consulta'),
-    path('accounts/', include('django.contrib.auth.urls'),),
-    path('registro/', registro, name='registro'),
-    path('mis-consultas/', mis_consultas, name='mis_consultas'),
+    path('', ComplejosListView.as_view(), name = 'complejos'),
+    #path('accounts/', include('django.contrib.auth.urls'),),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    #path('registro/', registro, name='registro'),
     path('ver-cliente/', ver_cliente, name='ver_cliente'),
-    path('ver-complejo/<nombre>', ver_complejo, name='ver_complejo'),
+    path('complejo/<int:pk>/<slug:nombre_complejo>/', ComplejoDetailView.as_view(), name='complejo'),
+    path('autocomplete', autocomplete, name='autocomplete'),
+    path('ver-complejos-por-localidad/<lugar>', ver_complejos_por_localidad, name='ver_complejos_por_localidad'),
+    path('complejo-admin/', login_complejo, name='login_complejo'),
+    path('complejo-update/<int:pk>/', ComplejoUpdate.as_view(), name='complejo-update'),
 ]

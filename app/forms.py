@@ -1,25 +1,10 @@
 from django import forms
-from datetime import datetime, date
-from .models import Consulta, Complejo, Cliente, Mensaje
+from .models import Complejo, Cliente
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class DateInput(forms.DateInput):
     input_type = 'date'
-
-class ConsultaForm(forms.ModelForm):
-    fecha_ingreso = forms.DateField(widget=DateInput)
-    fecha_salida = forms.DateField(widget=DateInput)
-    
-    class Meta:
-        model = Consulta
-        fields = ['fecha_ingreso','fecha_salida', 'cantidad_mayores', 'cantidad_menores']
-        #fields = '__all__'
-
-class MensajeForm(forms.ModelForm):
-    class Meta:
-        model = Mensaje
-        fields = ['mensaje']
 
 paises = [
     [0, 'Alemania'],

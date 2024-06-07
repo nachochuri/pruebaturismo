@@ -1,0 +1,31 @@
+{% extends 'app/base_cliente.html' %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+    <br><br>
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Mis consultas</h2>
+                    <hr>
+                        {%for consulta in consulta_list%}
+                            <a href={%url 'consultas:ver_consulta' consulta.id %}>
+                                <p>{{consulta.complejo}}</p>
+                                <p>{{consulta.mensaje}}</p>
+                                <p>{{consulta.fecha_ingreso}}</p>
+                                <p>{{consulta.fecha_salida}}</p>
+                            </a>
+                        <hr>
+                        {%empty%}
+                            <h4>Aún no has realizado consultas...</h4>  
+                        {%endfor%}
+                    
+                        <div class="d-flex justify-content-end">
+                            {% include 'app/paginator.html' %}
+                        </div>
+                        {{ mensaje }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

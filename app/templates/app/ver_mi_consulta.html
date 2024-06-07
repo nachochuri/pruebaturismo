@@ -2,10 +2,13 @@
 {% block contenido %}
 {% load crispy_forms_tags %}
     <br><br>
-    <div class="row">
-        
-        <div class="col-12 col-md-6 offset-md-3">
 
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            Lista de mensajes a complejos
+          </div>
+          <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h2>Consultas a {{ consulta.complejo }}</h2>
@@ -47,6 +50,19 @@
                     
                 </div>
             </div>
+          </div>
+          <div class="col">
+            Detalle del complejo seleccionado
+          </div>
+        </div>
+      </div>
+
+
+    <div class="row">
+        
+        <div class="col-12 col-md-6 offset-md-3">
+
+            
         </div>
     </div>
     <br><br>

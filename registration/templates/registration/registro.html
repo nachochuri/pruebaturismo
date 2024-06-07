@@ -1,0 +1,37 @@
+{% load static %}
+{% block css %}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'app/css/bootstrap5.min.css' %}">
+{% endblock %}
+{% block js %}
+<script src="{% static 'app/js/jquery3.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="{% static 'app/js/popper.min.js' %}" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+{% endblock %}
+    
+  
+{% load crispy_forms_tags %}
+<style>.errorlist{color:red;} label{display: none;} </style>
+
+<div class="modal-dialog">
+  <div class="modal-content">
+      <form action="" method="POST">{% csrf_token %}
+          <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Registro de Usuario</h4>
+              <button type="button" class="btn-close" onclick="cerrar_modal()" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              
+
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  {{ cliente_form }}
+
+              
+          </div>
+          <div class="modal-footer">
+              <input type="submit" value="Registrar" class="btn btn-success float-rigth">
+          </div>
+      </form>
+  </div>
+</div>
